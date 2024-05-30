@@ -1,3 +1,23 @@
+This fork adds vt100 emulation to the Pico-RunCPM/DVI/USB system, making it a usable CPM-machine. The vt100 emulation is working for all tested programs, but not everything is implemented and goal is to have a color terminal (this need reimplementing/patching adafruits PicoDVI library, not started yet)
+
+Also be aware that I patched the source code for my pinout, so the schematics are not what is implemented yet. Just change them to what you need.
+
+hardware:
+
+dvi-adapter is the dvi sock: https://github.com/Wren6991/Pico-DVI-Sock
+
+sdcard is:
+9 Pin 6 - GPIO 4 MISO
+ Pin 7 - GPIO 5 Chip/Card-Select (CS / SS)
+ Pin 4 - GPIO 2 Clock (SCK)
+ Pin 5 - GPIO 3 MOSI
+
+May 2024 Sven Muehlberg
+
+
+original project information follow:
+---
+
 # RunCPM_Pico_DVI_USB_Keyboard
 ### Summary
 
