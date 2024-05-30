@@ -229,10 +229,16 @@ void setup(void) {
 // =========================================================================================
 // Redefine SPI-Pins - if needed : (SPI.) = SPI0 / (SPI1.) = SPI1
 // =========================================================================================
-  SPI.setRX(16);   // MISO
-  SPI.setCS(17);   // Card Select
-  SPI.setSCK(18);  // Clock
-  SPI.setTX(19);   // MOSI
+//  SPI.setRX(16);   // MISO
+//  SPI.setCS(17);   // Card Select
+//  SPI.setSCK(18);  // Clock
+//  SPI.setTX(19);   // MOSI
+
+  SPI.setRX(4);   // MISO
+  SPI.setCS(5);   // Card Select
+  SPI.setSCK(2);  // Clock
+  SPI.setTX(3);   // MOSI
+
 
 // =========================================================================================
 // Setup SD card writing settings
@@ -256,7 +262,8 @@ void setup(void) {
 #define SDMHZ_TXT "19"              // for outputing SDMHZ-Text
 // normal is 12Mhz because of https://www.pschatzmann.ch/home/2021/03/14/rasperry-pico-with-the-sdfat-library/
 #define SDMHZ 19                    // setting 19 Mhz for SPI-Bus
-#define SS 17
+// #define SS 17
+#define SS 5
 // select required SPI-Bus : (&SPI) = SPI0 / (&SPI1) = SPI1
 #define SD_CONFIG SdSpiConfig(SS, DEDICATED_SPI, SD_SCK_MHZ(SDMHZ), &SPI)
 // #define SD_CONFIG SdSpiConfig(SS, DEDICATED_SPI, SPI_FULL_SPEED, &SPI)

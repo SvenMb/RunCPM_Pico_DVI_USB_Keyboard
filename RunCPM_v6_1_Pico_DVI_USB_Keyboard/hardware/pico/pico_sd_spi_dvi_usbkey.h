@@ -178,8 +178,10 @@ SdFat SD;
 // SPIINIT !!ONLY!! for ESP32-boards
 // #define SPIINIT Clock, MISO, MOSI, Card-Select
 // =========================================================================================
-#define SPIINIT 18,16,19,SS 
-#define SPIINIT_TXT "18,16,19,17"
+// #define SPIINIT 18,16,19,SS 
+#define SPIINIT 2,4,3,5
+// #define SPIINIT_TXT "18,16,19,17"
+#define SPIINIT_TXT "2,4,3,5"
 
 // =========================================================================================
 // Pin Documentation
@@ -226,7 +228,8 @@ void msc_flush_cb(void) {
 
 // DVI Display
 #if USE_DISPLAY
-DVItext1 display(DVI_RES_640x240p60, pimoroni_demo_hdmi_cfg);
+// DVItext1 display(DVI_RES_640x240p60, pimoroni_demo_hdmi_cfg);
+DVItext1 display(DVI_RES_640x240p60, pico_sock_cfg);
 //DVItext1 display(DVI_RES_800x240p30, pimoroni_demo_hdmi_cfg);
 
 #define H_TAB 8
