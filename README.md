@@ -16,6 +16,8 @@ serial port:
  - GPIO 0 TX
  - GPIO 1 RX
 
+<br><img src="images/RunCPM_DVI_USB_vt100.jpg" width="800"><br>
+
 May 2024 Sven Muehlberg
 
 
