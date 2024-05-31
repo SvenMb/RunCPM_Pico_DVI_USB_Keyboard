@@ -7,10 +7,14 @@ hardware:
 dvi-adapter is the dvi sock: https://github.com/Wren6991/Pico-DVI-Sock
 
 sdcard is:
-9 Pin 6 - GPIO 4 MISO
- Pin 7 - GPIO 5 Chip/Card-Select (CS / SS)
- Pin 4 - GPIO 2 Clock (SCK)
- Pin 5 - GPIO 3 MOSI
+ - GPIO 4 MISO
+ - GPIO 5 Chip/Card-Select (CS / SS)
+ - GPIO 2 Clock (SCK)
+ - GPIO 3 MOSI
+
+serial port:
+ - GPIO 0 TX
+ - GPIO 1 RX
 
 May 2024 Sven Muehlberg
 
