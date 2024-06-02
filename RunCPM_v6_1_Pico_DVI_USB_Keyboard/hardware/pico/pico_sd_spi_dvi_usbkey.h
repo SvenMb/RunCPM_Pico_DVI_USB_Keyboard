@@ -279,12 +279,26 @@ void scroll_region(uint8_t start, uint8_t end, int8_t n) {
 
 void fb_insert(uint8_t x, uint8_t y, uint8_t n) {
   if( y < display.height() && x < display.width()) {
-    // memmove(display.getBuffer()+display.width()*y+)
+    if (x+n < display.width()) { 
+      memmove(display.getBuffer() + y*display.width()+x+n, display.getBuffer() + y*display.width() + x, n*2);
+    }
+    for (int i=0;i<n;i++) {
+      display.getBuffer()[y*display.width()+x+n]=0xdb;
+    }
   }
 };
 
 void fb_delete(uint8_t x, uint8_t y, uint8_t n) {
-
+  if( y < display.height() && x < display.width()) {
+    if (x+n < display.width()) { 
+      memmove(display.getBuffer() + y*display.width()+x, display.getBuffer() + y*display.width() + x+n, n*2);
+    }
+    for (int i=0;i<n;i++) {
+      if(x+n-i<display.width()) {
+        display.getBuffer()[y*display.width()+x+n-i]=0xdb;
+      }
+    }
+  }
 };
 
 
@@ -304,11 +318,11 @@ static uint8_t get_charset(char c) {
 static void show_cursor(bool show) {
   if (show) {
     // show cursor
-    underCursor = display.getPixel(cursor_col, cursor_row);
-    display.drawPixel(cursor_col, cursor_row, 0xDB);
+    underCursor = display.getBuffer()[cursor_row*display.width()+cursor_col];
+    display.getBuffer()[cursor_row*display.width()+cursor_col] = 0xff00 | underCursor;
   } else {
-    // show char below cursor
-    display.drawPixel(cursor_col, cursor_row, underCursor);
+    // show char below
+    display.getBuffer()[cursor_row*display.width()+cursor_col] = underCursor & 0xff;
   }
 }
 
@@ -406,8 +420,8 @@ static void print_char_vt(char c) {
   // framebuf_set_color(cursor_col, cursor_row, color_fg, color_bg);
   // framebuf_set_attr(cursor_col, cursor_row, attr);
   // framebuf_set_char(cursor_col, cursor_row, c);
-  display.drawPixel(cursor_col, cursor_row, c);
-
+  // display.drawPixel(cursor_col, cursor_row, c);
+  display.getBuffer()[cursor_row*display.width()+cursor_col] = c;
   if (auto_wrap_mode && cursor_col == display.width() - 1) {
     // cursor stays in last column but will wrap if another character is typed
     // cur_attr = attr;
@@ -487,7 +501,8 @@ static void terminal_process_text(char c) {
           move_cursor_limited(cursor_row, cursor_col - 1);
 
         // framebuf_set_char(cursor_col, cursor_row, ' ');
-        display.drawPixel(cursor_col, cursor_row, ' ');
+        // display.drawPixel(cursor_col, cursor_row, ' ');
+        display.getBuffer()[cursor_row*display.width()+cursor_col] = ' '; 
         // framebuf_set_attr(cursor_col, cursor_row, 0);
         // cur_attr = 0;
         show_cursor(cursor_shown);
