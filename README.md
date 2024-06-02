@@ -1,4 +1,17 @@
-This fork adds vt100 emulation to the Pico-RunCPM/DVI/USB system, making it a usable CPM-machine. The vt100 emulation is working for all tested programs, but not everything is implemented and goal is to have a color terminal (this need reimplementing/patching adafruits PicoDVI library, not started yet)
+This fork adds vt100 emulation to the Pico-RunCPM/DVI/USB system, making it a usable CPM-machine. The vt100 emulation is working for some programs, but not everything is implemented and goal is to have a color terminal (this need reimplementing/patching adafruits PicoDVI library, not started yet)
+
+Currently tested and working:
+
+- wordstar 4
+- te
+- ladder
+- catchum
+
+currently not working:
+
+- turbo pascal
+- ws 3.3
+
 
 Also be aware that I patched the source code for my pinout, so the schematics are not what is implemented yet. Just change them to what you need.
 
